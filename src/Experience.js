@@ -2,6 +2,8 @@ import { CameraControls } from '@react-three/drei';
 import { Scroll, ScrollControls, useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useState } from 'react';
+import { editable as e, SheetProvider } from '@theatre/r3f'
+
 
 
 const Model = () => {
@@ -13,10 +15,10 @@ const Model = () => {
   })
 
   return (
-    <mesh rotation={[0, rotation, 0]}>
+    <e.mesh rotation={[0, rotation, 0]} theatreKey="mesh">
       <torusGeometry />
       <meshStandardMaterial color={'green'} />
-    </mesh>
+    </e.mesh>
   )
 
 }
