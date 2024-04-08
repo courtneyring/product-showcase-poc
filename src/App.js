@@ -13,8 +13,9 @@ const demoSheet = getProject('Demo Project').sheet('Demo Sheet')
 
 
 function App() {
-  studio.initialize();
   studio.extend(extension)
+  studio.initialize();
+  
 
   return (
     <Canvas
@@ -26,6 +27,7 @@ function App() {
       }}
     >
       <SheetProvider sheet={demoSheet}>
+        {/* <Experience /> */}
         <Experience />
         <color attach="background" args={['black']} />
       </SheetProvider>
