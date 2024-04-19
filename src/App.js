@@ -7,6 +7,7 @@ import studio from '@theatre/studio'
 import extension from '@theatre/r3f/dist/extension'
 import { SheetProvider } from '@theatre/r3f'
 
+import * as THREE from 'three';
 
 
 const demoSheet = getProject('Demo Project').sheet('Demo Sheet')
@@ -19,17 +20,16 @@ function App() {
 
   return (
     <Canvas
-      camera={{
-        fov: 45,
-        near: 0.1,
-        far: 200,
-        position: [4, - 2, 6]
+      camera={{ position: [0, 0, 15], fov: 30 }}
+      shadows
+      gl={{
+        // outputEncoding: THREE.SRGBColorSpace,
+        toneMapping: THREE.LinearToneMapping
       }}
     >
       <SheetProvider sheet={demoSheet}>
-        {/* <Experience /> */}
         <Experience />
-        <color attach="background" args={['black']} />
+        {/* <color attach="background" args={['black']} /> */}
       </SheetProvider>
     </Canvas>
 

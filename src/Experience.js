@@ -1,23 +1,20 @@
-import { CameraControls } from '@react-three/drei';
-import { Scroll, ScrollControls, useScroll } from '@react-three/drei';
+import { Scroll, ScrollControls, useScroll, Environment, useGLTF, AccumulativeShadows, RandomizedLight, OrbitControls } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useState } from 'react';
 
 import {
   editable as e,
-  SheetProvider,
   PerspectiveCamera,
   useCurrentSheet,
 } from "@theatre/r3f";
-import { getProject, val } from "@theatre/core";
+import { val } from "@theatre/core";
+
 
 const Model = () => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
-  // const [rotation, setRotation] = useState(0);
+  const { scene } = useGLTF('/models/range-rover.glb');
 
   useFrame(() => {
-    // setRotation((Math.PI * 2) * scroll.range(0, 1))
     // the length of our sequence
     const sequenceLength = val(sheet.sequence.pointer.length);
     // update the "position" of the playhead in the sequence, as a fraction of its whole length
@@ -25,14 +22,17 @@ const Model = () => {
   })
 
   return (
-    <e.mesh theatreKey="mesh">
-      <torusGeometry />
-      <meshStandardMaterial color={'green'} />
-    </e.mesh>
+    // <Gltf src='/models/range-rover.glb' />
+    <e.primitive object={scene} theatreKey='vehicle' editableType='mesh' />
+    // <Porsche scale={1.6} position={[-0.5, -0.18, 0]} rotation={[0, Math.PI / 5, 0]} />
+
+    // <e.mesh theatreKey="mesh">
+    //   <torusGeometry />
+    //   <meshStandardMaterial color={'green'} />
+    // </e.mesh>
+
   )
-
 }
-
 
 const Experience = () => {
 
@@ -40,7 +40,10 @@ const Experience = () => {
 
   return (
     <>
-      <ambientLight intensity={3} />
+      <e.ambientLight intensity={0.5} theatreKey='ambientLight' />
+      <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0001} />
+      <OrbitControls />
+
       <PerspectiveCamera
         theatreKey="Camera"
         makeDefault
@@ -49,10 +52,16 @@ const Experience = () => {
         near={0.1}
         far={70}
       />
-      {/* <CameraControls /> */}
 
       <ScrollControls pages={pages}>
+
+        <Environment background={false} blur={100} preset='sunset' theatreKey='environment' intensity={0.5} />
         <Model />
+
+        <AccumulativeShadows position={[0, -1.16, 0]} frames={100} alphaTest={0.9} scale={10}>
+          <RandomizedLight amount={8} radius={10} ambient={0.5} position={[1, 5, -1]} />
+        </AccumulativeShadows>
+
         <Scroll>
 
         </Scroll>
@@ -62,7 +71,7 @@ const Experience = () => {
               [...Array(pages)].map((page, idx) => {
                 return <div key={idx} className='section'>
                   <div className='words'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </div>
                 </div>
               })
@@ -70,11 +79,8 @@ const Experience = () => {
 
           </div>
 
-
         </Scroll>
-
       </ScrollControls>
-
 
     </>
   )
