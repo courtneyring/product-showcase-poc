@@ -1,43 +1,38 @@
-import { Scroll, ScrollControls, useScroll, Environment, useGLTF, AccumulativeShadows, RandomizedLight, OrbitControls } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { Scroll, ScrollControls, Environment, AccumulativeShadows, RandomizedLight } from '@react-three/drei';
 import pageData from './assets/data';
+import { useRef } from 'react';
+import Model from './components/Model/Model';
+import Pages from './components/Pages/Pages';
 
-import {
-  editable as e,
-  PerspectiveCamera,
-  useCurrentSheet,
-} from "@theatre/r3f";
-import { val } from "@theatre/core";
+import { gsap } from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+import { editable as e, PerspectiveCamera } from "@theatre/r3f";
 
 
-const Model = () => {
-  const sheet = useCurrentSheet();
-  const scroll = useScroll();
-  const { scene } = useGLTF('/models/range-rover.glb');
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
-  useFrame(() => {
-    // the length of our sequence
-    const sequenceLength = val(sheet.sequence.pointer.length);
-    // update the "position" of the playhead in the sequence, as a fraction of its whole length
-    sheet.sequence.position = scroll.offset * sequenceLength;
-  })
-
-  return (
-    // <Gltf src='/models/range-rover.glb' />
-    <e.primitive object={scene} theatreKey='vehicle' editableType='mesh' />
-    // <Porsche scale={1.6} position={[-0.5, -0.18, 0]} rotation={[0, Math.PI / 5, 0]} />
-
-    // <e.mesh theatreKey="mesh">
-    //   <torusGeometry />
-    //   <meshStandardMaterial color={'green'} />
-    // </e.mesh>
-
-  )
-}
 
 const Experience = () => {
 
-  const pages = 6;
+  const node = useRef()
+
+  // useGSAP(() => {
+  //   gsap.from(node.current, {
+  //     opacity: 0,
+  //     y: '2vh',
+  //     duration: 0.5,
+  //     scrollTrigger: {
+  //       trigger: node.current,
+  //       start: 'top bottom-=40%',
+  //       markers: true
+  //     },
+  //   });
+
+  // }, { scope: node });
 
   return (
     <>
@@ -63,29 +58,8 @@ const Experience = () => {
           <RandomizedLight amount={8} radius={10} ambient={0.5} position={[1, 5, -1]} />
         </AccumulativeShadows>
 
-        <Scroll>
+         <Pages pageData={pageData} />
 
-        </Scroll>
-        <Scroll html>
-          <div className='container'>
-            <div className='section'>
-              <h1>Introducing All-New Range Rover</h1>
-            </div>
-            {
-              pageData.map((page, idx) => {
-                return <div key={idx} className='section'>
-                  <div className='content'>
-                    <h2 >{page.title}</h2>
-                    <p>{page.body}</p>
-                  </div>
-
-                </div>
-              })
-            }
-
-          </div>
-
-        </Scroll>
       </ScrollControls>
 
     </>

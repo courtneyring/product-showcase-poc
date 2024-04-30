@@ -8,14 +8,16 @@ import extension from '@theatre/r3f/dist/extension'
 import { SheetProvider } from '@theatre/r3f'
 
 import * as THREE from 'three';
+import demoProjectState from './assets/state.json'
 
 
-const demoSheet = getProject('Demo Project').sheet('Demo Sheet')
+const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet('Demo Sheet');
+// const demoSheet = getProject('Demo Project').sheet('Demo Sheet');
 
 
 function App() {
-  studio.extend(extension)
-  studio.initialize();
+  // studio.extend(extension)
+  // studio.initialize();
   
 
   return (
