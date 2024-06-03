@@ -1,9 +1,8 @@
-import { Scroll, ScrollControls, Environment, AccumulativeShadows, RandomizedLight } from '@react-three/drei';
+import { Scroll, ScrollControls, Environment, AccumulativeShadows, RandomizedLight, Html } from '@react-three/drei';
 import pageData from './assets/data';
 import { useRef } from 'react';
 import Model from './components/Model/Model';
 import Pages from './components/Pages/Pages';
-
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -33,6 +32,9 @@ const Experience = () => {
   //   });
 
   // }, { scope: node });
+  
+
+
 
   return (
     <>
@@ -57,7 +59,10 @@ const Experience = () => {
           <RandomizedLight amount={8} radius={10} ambient={0.5} position={[1, 5, -1]} />
         </AccumulativeShadows>
 
-         <Pages pageData={pageData} />
+    {/* <Html fullscreen center transform={false} style={{backgroundColor: 'green'}} wrapperClass='html-wrapper'>
+        <Pages pageData={pageData} />
+    </Html>
+          */}
 
       {/* </ScrollControls> */}
 

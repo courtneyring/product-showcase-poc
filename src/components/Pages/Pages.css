@@ -1,0 +1,13 @@
+.heading {
+  /* opacity: 0; */
+  height: 100vh;
+  position: absolute;
+  opacity: 0;
+}
+
+
+.content {
+  color: white;
+
+}
+
