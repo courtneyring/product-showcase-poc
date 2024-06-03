@@ -6,15 +6,16 @@ import { useFrame } from '@react-three/fiber';
 const Model = () => {
 
   const sheet = useCurrentSheet();
-  const scroll = useScroll();
+  // const scroll = useScroll();
   const { scene } = useGLTF('/models/range-rover.glb');
 
   useFrame(() => {
     // console.log(scroll.offset)
     // the length of our sequence
-    const sequenceLength = val(sheet.sequence.pointer.length);
+    // const sequenceLength = val(sheet.sequence.pointer.length);
     // update the "position" of the playhead in the sequence, as a fraction of its whole length
-    sheet.sequence.position = scroll.offset * sequenceLength;
+    // sheet.sequence.position = scroll.offset * sequenceLength;
+    sheet.sequence.position = 0;
     // console.log(scroll.visible(0, 1 / 7))
   })
 

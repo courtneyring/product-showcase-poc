@@ -16,8 +16,8 @@ const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet(
 
 
 function App() {
-  studio.extend(extension)
-  studio.initialize();
+  // studio.extend(extension)
+  // studio.initialize();
   
 
   return (

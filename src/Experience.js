@@ -49,8 +49,7 @@ const Experience = () => {
         far={70}
       />
 
-      <ScrollControls pages={pageData.length}>
-
+      {/* <ScrollControls pages={pageData.length}>  */}
         <Environment background={false} blur={100} preset='sunset' theatreKey='environment' intensity={0.5} />
         <Model />
 
@@ -60,7 +59,7 @@ const Experience = () => {
 
          <Pages pageData={pageData} />
 
-      </ScrollControls>
+      {/* </ScrollControls> */}
 
     </>
   )
