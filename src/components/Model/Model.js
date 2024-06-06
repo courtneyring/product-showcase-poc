@@ -12,10 +12,17 @@ const Model = () => {
   useFrame(() => {
     // console.log(scroll.offset)
     // the length of our sequence
-    // const sequenceLength = val(sheet.sequence.pointer.length);
+    const sequenceLength = val(sheet.sequence.pointer.length);
     // update the "position" of the playhead in the sequence, as a fraction of its whole length
-    // sheet.sequence.position = scroll.offset * sequenceLength;
-    sheet.sequence.position = 0;
+    var body = document.body,
+      html = document.documentElement;
+    let scrollTop = window.scrollY;
+    var height = Math.max(body.scrollHeight, body.offsetHeight,
+      html.clientHeight, html.scrollHeight, html.offsetHeight);
+    let scrollPercent = scrollTop / height;
+    console.log(scrollPercent)
+    sheet.sequence.position = scrollPercent * sequenceLength;
+    // sheet.sequence.position = 0;
     // console.log(scroll.visible(0, 1 / 7))
   })
 

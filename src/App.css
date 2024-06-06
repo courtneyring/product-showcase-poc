@@ -6,8 +6,11 @@
   /* position: absolute; */
       /* overflow: auto; */
     /* height: 100%; */
+   
 }
 .model-container {
+  
+  /* scroll-snap-stop: always; */
   position: fixed;
   top: 0;
   left: 0;
