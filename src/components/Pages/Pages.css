@@ -1,9 +1,22 @@
+
+.head {
+  /* scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(100vh); */
+  /* height: 100vh;
+  overflow: scroll;
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y mandatory; */
+}
+
 .heading {
   /* opacity: 0; */
-  height: 100vh;
+  /* height: 100vh; */
   /* position: absolute; */
   /* opacity: 0; */
   scroll-snap-align: start;
+  height: 100vh;
+  position: relative;
+
 }
 
 
@@ -12,8 +25,3 @@
 
 }
 
-.head {
-  scroll-snap-type: mandatory;
-    scroll-snap-points-y: repeat(100vh);
-    scroll-snap-type: y mandatory;
-}

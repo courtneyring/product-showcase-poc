@@ -38,10 +38,12 @@ function App() {
           </SheetProvider>
         </Canvas>
       </div>
-     
       <div className='page-container'>
         <Pages pageData={pageData} />
       </div>
+  
+     
+     
       
     </>
 

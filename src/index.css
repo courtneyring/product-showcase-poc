@@ -9,7 +9,11 @@ body,
     width: 100%;
     height: 100%;
     background: black;
-    scroll-snap-type: both mandatory;
+    scroll-snap-points-y: repeat(100vh);
+      scroll-snap-type: y mandatory;
+    /* overflow: hidden;
+    height: 100vh; */
+    
 }
 
 h1 {
