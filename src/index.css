@@ -30,6 +30,10 @@ body,
   background: black;
   scroll-snap-points-y: repeat(100vh);
   scroll-snap-type: y mandatory;
+
+  &::-webkit-scrollbar {
+      display: none;
+    }
 }
 
 h1 {
