@@ -1,27 +1,47 @@
-
-.head {
-  /* scroll-snap-type: mandatory;
-    scroll-snap-points-y: repeat(100vh); */
-  /* height: 100vh;
-  overflow: scroll;
-  scroll-snap-points-y: repeat(100vh);
-  scroll-snap-type: y mandatory; */
-}
-
 .heading {
-  /* opacity: 0; */
-  /* height: 100vh; */
-  /* position: absolute; */
-  /* opacity: 0; */
   scroll-snap-align: start;
   height: 100vh;
   position: relative;
 
 }
 
+.heading {
 
-.content {
-  color: white;
+  .content {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    position: absolute;
+    max-width: 600px;
+    top: 20%;
+    left: 10%;
 
+
+    & h2 {
+      font-size: 50px;
+      line-height: 60px;
+    }
+
+    & p {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+  }
+
+  &:nth-child(even)>.content {
+    left: unset;
+    right: 10%;
+    text-align: right;
+  }
 }
 
+
+.content:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 70px 80px rgba(0, 0, 0, 0.7);
+}
