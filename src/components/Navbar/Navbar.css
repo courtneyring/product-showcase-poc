@@ -1,0 +1,20 @@
+.navbar {
+    color: white;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    height: 70px;
+    padding: 0px 20px;
+}
+
+
+h1 {
+  font-size: 30px;  
+}
+
+.menu {
+    filter: brightness(0) invert(1);
+    height: 70%;
+}

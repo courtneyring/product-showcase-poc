@@ -11,6 +11,7 @@ import * as THREE from 'three';
 import demoProjectState from './assets/state2.json'
 import Pages from './components/Pages/Pages';
 import pageData from './assets/data';
+import Navbar from './components/Navbar/Navbar';
 
 
 const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet('Demo Sheet');
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <div className='model-container'>
 
         <Canvas
