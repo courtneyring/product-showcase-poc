@@ -10,6 +10,8 @@ import { useGSAP } from "@gsap/react";
 import './Pages.css';
 
 const Pages = ({ pageData }) => {
+
+  const isMobile = window.innerWidth < 768;
  
   useGSAP(() => {
     const headings = document.querySelectorAll('.heading');
@@ -37,7 +39,8 @@ const Pages = ({ pageData }) => {
       let tl = gsap.to(content, {
         opacity: 1,
         delay: 0.5,
-        top: '20%', 
+        ...(isMobile && {bottom: '7%'}), 
+        ...(!isMobile && { top: '20%' }), 
         scrollTrigger: {
           // scroller: ".page-container",
           trigger: heading,
