@@ -1,0 +1,83 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 100%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-container {
+    animation: 0.5s ease-out 0s 1 fadeIn forwards;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    // padding: 7rem;
+    top: 0px;
+    left: 0px;
+
+    &.fadeOut {
+        animation: 0.5s ease-in-out 0s 1 fadeOut forwards;
+    }
+}
+
+.overlay-dialog {
+    padding: 4rem;
+    position: absolute;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    animation: 0.5s ease-out 0s 1 fadeIn forwards;
+    background: white;
+
+    &.fadeOut {
+        animation: 0.5s ease-in-out 0s 1 fadeOut forwards;
+    }
+}
+
+.overlay-button {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    // width: 5rem;
+    cursor: pointer;
+}
+
+
+@media(min-width: 768px) {
+
+    .overlay-dialog {
+        width: calc(100% - 100px);
+        height: calc(100% - 100px);
+        top: unset;
+        left: unset;
+        border-radius: 5px;
+
+        // background: rgba(0, 0, 0, 0.5)
+    }
+}

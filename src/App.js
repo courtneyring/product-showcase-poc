@@ -12,7 +12,9 @@ import demoProjectState from './assets/state2.json'
 import Pages from './components/Pages/Pages';
 import pageData from './assets/data';
 import Navbar from './components/Navbar/Navbar';
-
+import Overlay from './components/Overlay/Overlay';
+import { createPortal } from 'react-dom';
+import { useState } from 'react'; 
 
 const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet('Demo Sheet');
 // const demoSheet = getProject('Demo Project').sheet('Demo Sheet');
@@ -21,7 +23,8 @@ const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet(
 function App() {
   // studio.extend(extension)
   // studio.initialize();
-  
+  const [menuIsOpen, setMenuIsOpen] = useState(true);
+
 
   return (
     <>
@@ -43,10 +46,17 @@ function App() {
       <div className='page-container'>
         <Pages pageData={pageData} />
       </div>
-  
-     
-     
-      
+      {menuIsOpen && createPortal(
+        <Overlay closeFn={() => setMenuIsOpen(false)}>
+          <div>test</div>
+
+        </Overlay>,
+        document.body
+      )
+      }
+
+
+
     </>
 
 
