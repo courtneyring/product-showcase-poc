@@ -1,18 +1,26 @@
-import { useFrame } from '@react-three/fiber';
+
 // import Page from '../Page/Page';
 import { useScroll } from '@react-three/drei';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Scroll } from '@react-three/drei';
 import { gsap } from "gsap";
-
+import Overlay from '../../components/Overlay/Overlay';
+import { createPortal } from 'react-dom';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import './Pages.css';
 
+
 const Pages = ({ pageData }) => {
 
   const isMobile = window.innerWidth < 768;
- 
+  const [menuIsOpen, setMenuIsOpen] = useState();
+
+
+
+
+
+
   useGSAP(() => {
     const headings = document.querySelectorAll('.heading');
     // // const nums = document.querySelectorAll('.scroll-num');s
@@ -39,8 +47,8 @@ const Pages = ({ pageData }) => {
       let tl = gsap.to(content, {
         opacity: 1,
         delay: 0.5,
-        ...(isMobile && {bottom: '7%'}), 
-        ...(!isMobile && { top: '20%' }), 
+        ...(isMobile && { bottom: '7%' }),
+        ...(!isMobile && { top: '20%' }),
         scrollTrigger: {
           // scroller: ".page-container",
           trigger: heading,
@@ -67,19 +75,29 @@ const Pages = ({ pageData }) => {
 
   return (
     <>
-        <div  className='swipe-section head' >
-          {
+      <div className='swipe-section head' >
+        {
 
-            pageData.map((page, idx) =>
-              <div key={idx} className={`heading `}>
-                <div className='content' >
-                  <h2 >{page.title}</h2>
-                  <p>{page.body}</p>
-                </div>
+          pageData.map((page, idx) =>
+            <div key={idx} className={`heading `}>
+              <div className='content' >
+                <h2 >{page.title}</h2>
+                <p>{page.body}</p>
               </div>
-            )
-          }
-        </div>
+            </div>
+          )
+        }
+      </div>
+     
+      {menuIsOpen && createPortal(
+        <Overlay closeFn={() => setMenuIsOpen(false)}>
+          <div>test</div>
+
+        </Overlay>,
+        document.body
+      )
+      }
+
     </>
 
   )
