@@ -12,6 +12,8 @@ import demoProjectState from './assets/state2.json'
 import Pages from './components/Pages/Pages';
 import pageData from './assets/data';
 import Navbar from './components/Navbar/Navbar';
+import { useEffect, useState, useCallback } from 'react';
+
 
 
 
@@ -22,14 +24,32 @@ const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet(
 function App() {
   // studio.extend(extension)
   // studio.initialize();
-  
+
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const findSection = useCallback(() => {
+    let scrollTop = window.scrollY;
+    for (let i = 0; i < pageData.length; i++) {
+      if (scrollTop > (i - 1 + 0.5) * window.innerHeight && scrollTop < (i + 0.5) * window.innerHeight && currentSection !== i) {
+        setCurrentSection(i)
+        break;
+      }
+    }
+  }, [currentSection])
+
+
+  useEffect(() => {
+    document.addEventListener('scroll', findSection)
+    return () => {
+      document.removeEventListener('scroll', findSection);
+    };
+  }, [findSection])
 
 
   return (
     <>
       <Navbar />
       <div className='model-container'>
-
         <Canvas
           camera={{ position: [0, 0, 15], fov: 30 }}
           shadows
@@ -38,19 +58,14 @@ function App() {
           }}
         >
           <SheetProvider sheet={demoSheet}>
-            <Experience pageData={pageData}/>
+            <Experience pageData={pageData} currentSection={currentSection}/>
           </SheetProvider>
         </Canvas>
       </div>
       <div className='page-container'>
         <Pages pageData={pageData} />
       </div>
-      
-
-
     </>
-
-
   );
 }
 
