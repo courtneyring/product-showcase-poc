@@ -58,7 +58,7 @@ const Experience = () => {
       screenPosition.project(camera)
       const translateX = screenPosition.x * sizes.width * 0.5
       const translateY = - screenPosition.y * sizes.height * 0.5
-      point.element.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+      if(point.element.current) point.element.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
     })
   })
 

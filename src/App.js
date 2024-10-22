@@ -38,7 +38,7 @@ function App() {
           }}
         >
           <SheetProvider sheet={demoSheet}>
-            <Experience />
+            <Experience pageData={pageData}/>
           </SheetProvider>
         </Canvas>
       </div>
