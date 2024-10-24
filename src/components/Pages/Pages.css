@@ -5,9 +5,7 @@
 
 }
 
-.point {
-  position: absolute;
-}
+
 
 .heading {
 
@@ -21,6 +19,7 @@
     padding: 0px 10px;
 
     opacity: 0;
+    pointer-events: none;
 
 
     & h2 {
@@ -55,6 +54,7 @@
       position: fixed;
       top: 25%;
       left: 10%;
+      z-index:10;
     }
 
     & h2 {

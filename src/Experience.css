@@ -1,8 +1,32 @@
 .point {
+    
+    position: absolute;
+    z-index: 20;
+
+    &:hover {
+        cursor: pointer;
+
+        .point__hotspot {
+            background-color: blue;
+        }
+        .point__label {
+            display: block;
+        }
+    }
+}
+
+.point__hotspot {
     width: 20px;
     height: 20px;
     border-radius: 10px;
     background-color: violet;
-    position: absolute;
-    z-index: 10;
+    
+}
+
+.point__label {
+    background-color: white;
+    display: none;
+    margin-left: 20px;
+    padding: 10px;
+    white-space: nowrap;
 }

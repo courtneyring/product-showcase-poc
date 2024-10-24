@@ -49,6 +49,9 @@ function App() {
   return (
     <>
       <Navbar />
+      <div className='page-container'>
+        <Pages pageData={pageData} />
+      </div>
       <div className='model-container'>
         <Canvas
           camera={{ position: [0, 0, 15], fov: 30 }}
@@ -62,9 +65,7 @@ function App() {
           </SheetProvider>
         </Canvas>
       </div>
-      <div className='page-container'>
-        <Pages pageData={pageData} />
-      </div>
+
     </>
   );
 }
