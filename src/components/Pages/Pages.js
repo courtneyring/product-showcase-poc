@@ -4,8 +4,7 @@ import { useScroll } from '@react-three/drei';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Scroll } from '@react-three/drei';
 import { gsap } from "gsap";
-import Overlay from '../../components/Overlay/Overlay';
-import { createPortal } from 'react-dom';
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import './Pages.css';
@@ -14,7 +13,7 @@ import './Pages.css';
 const Pages = ({ pageData }) => {
 
   const isMobile = window.innerWidth < 768;
-  const [menuIsOpen, setMenuIsOpen] = useState();
+
 
 
 
@@ -89,14 +88,7 @@ const Pages = ({ pageData }) => {
         }
       </div>
      
-      {menuIsOpen && createPortal(
-        <Overlay closeFn={() => setMenuIsOpen(false)}>
-          <div>test</div>
-
-        </Overlay>,
-        document.body
-      )
-      }
+     
 
     </>
 

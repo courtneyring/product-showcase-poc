@@ -9,6 +9,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
+import Overlay from './components/Overlay/Overlay';
+import { createPortal } from 'react-dom';
 
 import { editable as e, PerspectiveCamera } from "@theatre/r3f";
 import './Experience.css';
@@ -21,6 +23,7 @@ gsap.registerPlugin(useGSAP);
 const Experience = ({ pageData, currentSection }) => {
   const { camera, raycaster } = useThree();
   const [points, setPoints] = useState([])
+  const [modalIsOpen, setModalIsOpen] = useState();
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -135,14 +138,22 @@ const Experience = ({ pageData, currentSection }) => {
       </AccumulativeShadows>
       <Html>
         {points.map((point, idx) => {
-          return <div className='point' ref={el => itemRefs.current[idx] = el}>
+          return <div className='point' ref={el => itemRefs.current[idx] = el} onClick={() => setModalIsOpen(true)}>
             <div className='point__hotspot'></div>
             <div className='point__label'>{point.title}</div>
           </div>
         })}
+        {modalIsOpen && createPortal(
+          <Overlay closeFn={() => setModalIsOpen(false)}>
+            <div>test</div>
+
+          </Overlay>,
+          document.body
+        )
+        }
       </Html>
 
-
+      
     </>
   )
 }
