@@ -23,7 +23,8 @@ gsap.registerPlugin(useGSAP);
 const Experience = ({ pageData, currentSection }) => {
   const { camera, raycaster } = useThree();
   const [points, setPoints] = useState([])
-  const [modalIsOpen, setModalIsOpen] = useState();
+  // const [modalIsOpen, setModalIsOpen] = useState();
+  const [activeHotspot, setActiveHotspot] = useState();
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -31,9 +32,7 @@ const Experience = ({ pageData, currentSection }) => {
 
   const node = useRef()
   const itemRefs = useRef([]);
-  // const point0 = useRef()
-  // const point1 = useRef()
-  // const point2 = useRef()
+
 
   useEffect(() => {
     let hotspots = pageData[currentSection].hotspots || [];
@@ -45,28 +44,18 @@ const Experience = ({ pageData, currentSection }) => {
     })
     setPoints(arr);
 
-    // setPoints([
-    //   {
-    //     position: new THREE.Vector3(2, 0.3, - 0.6),
-    //     element: point0
-    //   },
-    //   {
-    //     position: new THREE.Vector3(0.5, 0.8, - 1.6),
-    //     element: point1
-    //   },
-    //   {
-    //     position: new THREE.Vector3(1.6, - 1.3, - 0.7),
-    //     element: point2
-    //   }
-    // ])
-
   }, [currentSection])
 
 
-  useEffect(() => {
-    console.log(points)
-  }, [points])
+  // const setActiveHotspot = (idx) => {
+  //   points[idx].active = true;
+  //   setModalIsOpen(true)
+  // }
 
+  // const unsetActiveHotspot = () => {
+  //   points.forEach((point) => point.active = false)
+  //   setModalIsOpen(false);
+  // }
 
   useFrame(() => {
     points.forEach((point, i) => {
@@ -138,14 +127,15 @@ const Experience = ({ pageData, currentSection }) => {
       </AccumulativeShadows>
       <Html>
         {points.map((point, idx) => {
-          return <div className='point' ref={el => itemRefs.current[idx] = el} onClick={() => setModalIsOpen(true)}>
+          return <div className='point' ref={el => itemRefs.current[idx] = el} onClick={() => setActiveHotspot(idx)}>
             <div className='point__hotspot'></div>
             <div className='point__label'>{point.title}</div>
           </div>
         })}
-        {modalIsOpen && createPortal(
-          <Overlay closeFn={() => setModalIsOpen(false)}>
-            <div>test</div>
+        {activeHotspot !== undefined && createPortal(
+          <Overlay closeFn={() => setActiveHotspot()}>
+            <h2>{points[activeHotspot].title}</h2>
+            <p>{points[activeHotspot].body}</p>
 
           </Overlay>,
           document.body
