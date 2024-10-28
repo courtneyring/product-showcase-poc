@@ -19,8 +19,8 @@ const Overlay = ({ children, closeFn, hideClose, background }) => {
             <div className={styles['overlay-container']}>
             </div>
             <div className={`${styles['overlay-dialog']} ${fadeOut ? styles.fadeOut : styles.fadeIn}`}>
-                {!hideClose && <div className={styles['overlay-button']} onClick={close} >X
-                    {/* <img src={imagePath(`assets/icons/close.svg`)} /> */}
+                {!hideClose && <div className={styles['overlay-button']} onClick={close} >
+                    <img className={styles.Overlay__close} src='/close-icon.svg' />
                 </div>}
                 {children}
             </div>

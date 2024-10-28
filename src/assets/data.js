@@ -13,8 +13,9 @@ const pageData = [
       },
       {
         title: 'Hotspot 2',
-        body: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit',
-        position: [0.5, 0.8, -1.6]
+        body: '<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Class et phasellus eleifend fermentum sodales amet. Urna sit eget maximus sociosqu adipiscing malesuada. Tincidunt libero convallis cras quam sem massa ut mollis. Est non vitae in erat congue egestas bibendum. Praesent aptent feugiat habitant hendrerit laoreet montes primis. Elit ad elementum donec dictumst, aenean dictum.Vel quis sed lobortis enim orci, donec convallis non.Metus vivamus rhoncus dictumst vestibulum sociosqu dictum. </p><p>Parturient aptent proin ex massa aenean adipiscing etiam.Nisi etiam feugiat malesuada tellus vitae scelerisque mi.At risus fringilla ultrices eleifend lacus diam dui.Imperdiet tincidunt montes pretium gravida sit dignissim, posuere efficitur.Aliquam volutpat euismod quisque natoque morbi facilisi cubilia ultricies sodales.Enim inceptos malesuada litora pretium; nostra vel gravida.Purus scelerisque nulla orci dui parturient venenatis tincidunt commodo.Porta gravida habitasse ligula mattis habitasse risus urna finibus.</p><p>Mattis nostra semper congue auctor; nullam efficitur venenatis.Cubilia eleifend maecenas lobortis a, hendrerit dolor dictumst justo.Primis tempor inceptos enim sodales parturient.Morbi placerat tempus nam ultricies neque quam augue praesent.Iaculis vitae nam vitae morbi inceptos primis accumsan risus efficitur.Vehicula sem mattis iaculis sagittis nullam.Leo ad sit placerat volutpat felis maecenas libero.Porta lorem lectus vel cras suspendisse mus, vehicula nostra.</p>',
+        position: [0.5, 0.8, -1.6], 
+        image: '/window.jpg'
       },
       {
         title: 'Hotspot 3',

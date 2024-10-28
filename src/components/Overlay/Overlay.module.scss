@@ -46,7 +46,7 @@
 }
 
 .overlay-dialog {
-    padding: 4rem;
+    // padding: 4rem;
     position: absolute;
     opacity: 1;
     width: 100%;
@@ -69,6 +69,13 @@
     cursor: pointer;
 }
 
+.Overlay__close {
+    filter: invert(1);
+
+    &:hover {
+        filter: invert(0.5);
+    }
+}
 
 @media(min-width: 768px) {
 

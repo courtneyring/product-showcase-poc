@@ -14,6 +14,7 @@ import { createPortal } from 'react-dom';
 
 import { editable as e, PerspectiveCamera } from "@theatre/r3f";
 import './Experience.css';
+import HotspotDetail from './components/HotspotDetail/HotspotDetail';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -134,8 +135,9 @@ const Experience = ({ pageData, currentSection }) => {
         })}
         {activeHotspot !== undefined && createPortal(
           <Overlay closeFn={() => setActiveHotspot()}>
-            <h2>{points[activeHotspot].title}</h2>
-            <p>{points[activeHotspot].body}</p>
+            <HotspotDetail hotspot={points[activeHotspot]} />
+            {/* <h2>{points[activeHotspot].title}</h2>
+            <p>{points[activeHotspot].body}</p> */}
 
           </Overlay>,
           document.body
