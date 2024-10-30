@@ -12,7 +12,8 @@ import demoProjectState from './assets/state2.json'
 import Pages from './components/Pages/Pages';
 import pageData from './assets/data';
 import Navbar from './components/Navbar/Navbar';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
+import Loader from './components/Loading/Loading';
 
 
 
@@ -48,11 +49,15 @@ function App() {
 
   return (
     <>
+
+      <Suspense fallback={<Loader />}>
       <Navbar />
       <div className='page-container'>
         <Pages pageData={pageData} />
       </div>
       <div className='model-container'>
+        
+        
         <Canvas
           camera={{ position: [0, 0, 15], fov: 30 }}
           shadows
@@ -60,12 +65,16 @@ function App() {
             toneMapping: THREE.LinearToneMapping
           }}
         >
-          <SheetProvider sheet={demoSheet}>
-            <Experience pageData={pageData} currentSection={currentSection}/>
-          </SheetProvider>
+          
+          
+            <SheetProvider sheet={demoSheet}>
+              <Experience pageData={pageData} currentSection={currentSection} />
+            </SheetProvider>
+          
         </Canvas>
+        
       </div>
-
+      </Suspense>
     </>
   );
 }
